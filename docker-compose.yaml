@@ -1,0 +1,25 @@
+services:
+  njoy-category-service:
+    env_file: ".env"
+    image: njoy-category-service
+    container_name: ${CONTAINER_NAME}
+    restart: always
+    volumes: 
+      - /${VOLUME}/njoy-category-service/config:/njoy-category-service/config
+      - /${VOLUME}/njoy-category-service/keys:/njoy-category-service/backend_shared/security/.keys
+      - /${VOLUME}/njoy-category-service/logs:/njoy-category-service/logs
+      - /${VOLUME}/njoy-category-service/data/thumbnails:/njoy-category-service/data/thumbnails
+    ports:
+      - ${API_PORT}:${API_PORT}
+
+  db:
+    env_file: ".env"
+    image: mariadb:10.2
+    restart: always
+    volumes:
+      - /${VOLUME}/njoy-category-service/database:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_HOST: ${MYSQL_ROOT_HOST}
+    ports:
+      - ${DB_PORT}:3306

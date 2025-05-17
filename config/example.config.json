@@ -1,0 +1,169 @@
+{
+    "category_service": {
+        "hostname":"0.0.0.0",
+        "port": 8641,
+        "cors_enabled": true,
+        "allowed_domains":["*"],
+        "rsa_enabled": true
+    },
+    "database":{
+        "hostname":"njoyporn.com",
+        "port":8642,
+        "name":"njoy_category_service",
+        "page_size": 50,
+        "admin":{
+            "username":"root",
+            "password":"verysecret"
+        },
+        "user":{
+            "username":"guest",
+            "password":"secret"
+        },
+        "tables": [
+            {
+                "name":"categories",
+                "fields":[
+                    {
+                        "name":"id",
+                        "type":"varchar(32)",
+                        "std":"not null"
+                    },
+                    {
+                        "name":"name",
+                        "type":"varchar(64)",
+                        "std":"not null"
+                    },
+                    {
+                        "name":"info",
+                        "type":"varchar(256)",
+                        "std":""
+                    },
+                    {
+                        "name":"thumbnails",
+                        "type":"varchar(128)",
+                        "std":""
+                    },
+                    {
+                        "name":"relations",
+                        "type":"varchar(256)",
+                        "std":""
+                    },
+                    {
+                        "name":"thumbnail_url",
+                        "type":"varchar(2048)",
+                        "std":""
+                    },
+                    {
+                        "name":"public",
+                        "type":"bool",
+                        "std":"default 1"
+                    },
+                    {
+                        "name":"rules",
+                        "type":"varchar(64)",
+                        "std": ""
+                    },
+                    {
+                        "name":"translations",
+                        "type":"varchar(512)",
+                        "std": "" 
+                    },
+                    {
+                        "name":"datetime",
+                        "type": "datetime",
+                        "std": "not null"
+                    },
+                    {
+                        "name":"verified",
+                        "type": "datetime",
+                        "std": ""
+                    },
+                    {
+                        "name":"created_at",
+                        "type": "datetime",
+                        "std": "not null"
+                    },
+                    {
+                        "name":"updated_at",
+                        "type": "datetime",
+                        "std": "not null"
+                    },
+                    {
+                        "name":"soft_delete",
+                        "type": "bool",
+                        "std":"default 0"
+                    }
+                ]
+            }
+        ],
+        "serviceTables": [
+            {
+                "name":"serviceState",
+                "fields":[
+                    {
+                        "name":"id",
+                        "type":"int",
+                        "std":"auto_increment primary key"
+                    },
+                    {
+                        "name":"name",
+                        "type":"varchar(128)",
+                        "std":"not null"
+                    },
+                    {
+                        "name":"value",
+                        "type":"varchar(1024)",
+                        "std":""
+                    },
+                    {
+                        "name":"comment",
+                        "type":"varchar(1024)",
+                        "std":""
+                    },
+                    {
+                        "name":"datetime",
+                        "type": "datetime",
+                        "std": "not null"
+                    },
+                    {
+                        "name":"soft_delete",
+                        "type": "bool",
+                        "std":"default 0"
+                    }
+                ]
+            }
+        ]
+    },
+    "roles":{
+        "administrator":"administrator",
+        "moderator":"moderator",
+        "user":"user",
+        "guest":"guest"
+    },
+    "limits":{
+        "request_limit":{
+            "guest":1000,
+            "user":10000,
+            "moderator":"~~",
+            "administrator":"~~"
+        }
+    },
+    "security":{
+        "keys":{
+            "key_directory": "/backend_shared/security/.keys",
+            "public_key_path": "/backend_shared/security/.keys/public_key.pem",
+            "private_key_path": "/backend_shared/security/.keys/private_key.pem"
+        }
+    },
+    "verwaltung":{
+        "admin":{
+            "username":"admin",
+            "password":"verysecret",
+            "email":"info@njoy.com"
+        }
+    },
+    "data":{
+        "path":"data"
+    },
+    "debug":false
+}
